@@ -1,4 +1,8 @@
 import React , {Component} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// Put any other imports below so that CSS from your
+// components takes precedence over default styles.
+import {Card, Container, Row, Col, Button} from 'react-bootstrap';
 import './App.css';
 import Book from './Components/Book/Book';
 
@@ -133,14 +137,16 @@ class App extends Component{
       <div>
         <button onClick={this.handleReturnSearch}>Return to Search</button>
         <h1>Your Shopping Cart:</h1>
-        <div>
+        <Container>
+          <Row>
           {this.state.cart.map(book => 
-            <div key={book.BookNo}>
+            <Col xs={3} className="mb-5 d-flex flex-column" key={book.BookNo}>
             <Book style={style} key={book.BookNo} bookTitle={book.BookTitle} bookAuthors={[book.BookAuthor]} bookPrice={book.BookPrice}/>
-            <button style={style} onClick={() => this.handleRemoveFromCart(book)}>Remove From Cart</button>
-            </div>
+            <Button onClick={() => this.handleRemoveFromCart(book)}>Remove From Cart</Button>
+            </Col>
           )}
-        </div>
+          </Row>
+        </Container>
         <div>Cart Total: $ {this.calculateCartTotal(this.state.cart)}</div>
         <button>Proceed To Checkout</button>
       </div>
@@ -151,12 +157,16 @@ class App extends Component{
     } else if (!noResultsFound && !viewingCart){
       searchResults = 
       <div>
+      <Container>
+      <Row>
       {this.state.books.map(book => 
-        <div key={book.id}>
+        <Col xs={3} className="mb-5 d-flex flex-column" key={book.id}>
         <Book style={style} bookTitle={book.volumeInfo.title} bookAuthors={this.findBookAuthor(book)} bookPrice={this.findBookPrice(book)}/>
-        <button style={style} onClick={() => this.handleAddToCart(book)}>Add To Cart</button>
-        </div>
+        <Button onClick={() => this.handleAddToCart(book)}>Add To Cart</Button>
+        </Col>
       )}
+      </Row>
+      </Container>
     </div>
     } 
 

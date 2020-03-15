@@ -26,14 +26,14 @@ app.get('/createdatabase', (req, res) => {
   let sql = 'CREATE DATABASE bookstore';
   db.query(sql, (err, result) => {
     if(err) throw err;
-    console.log(result);
+    // console.log(result);
     res.send('Database created');
   });
 });
 
 // Create table in MySQL database
 app.get('/createbooktable', (req, res) => {
-  let sql = 'CREATE TABLE Book(BookNo INTEGER AUTO_INCREMENT, BookTitle VARCHAR(100), BookAuthor VARCHAR(100), BookPrice VARCHAR(50), PRIMARY KEY (BookNo))';
+  let sql = 'CREATE TABLE Book(BookNo INTEGER AUTO_INCREMENT, BookTitle VARCHAR(100), BookAuthor VARCHAR(100), BookPrice VARCHAR(50), BookImageURL VARCHAR(2090), PRIMARY KEY (BookNo))';
   db.query(sql, (err, result) => {
     if(err) throw err;
     console.log(result);
@@ -60,7 +60,6 @@ app.get('/searchTitle/:bookTitle', (req, res) => {
           res.send(error);
         } else{
           if(response.statusCode == 200){ //if the request worked
-            // res.send(body);
             let parsedData = JSON.parse(body);
             // console.log("parsedData.items[0].saleInfo.saleability is " + parsedData.items[0].saleInfo.saleability);
             let books = parsedData.items;
@@ -70,9 +69,14 @@ app.get('/searchTitle/:bookTitle', (req, res) => {
       });
 });
 
+
+
 // Insert book into book table
-app.get('/addbook/:bookTitle/:bookAuthor/:bookPrice', (req, res) => {
-  let book = {BookTitle: req.params.bookTitle, BookAuthor: req.params.bookAuthor, BookPrice: req.params.bookPrice};
+//bookID is id key in JSON response from Google Books API
+app.get('/addbook/:bookTitle/:bookAuthor/:bookPrice', (req, res) => { 
+  //add-on to image URL: '&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
+  let imageURLAddOn = '&printsec=' + req.query.printsec + '&img=' + req.query.img + '&zoom=' + req.query.zoom + '&edge=' + req.query.edge + '&source=' + req.query.source;
+  let book = {BookTitle: req.params.bookTitle, BookAuthor: req.params.bookAuthor, BookPrice: req.params.bookPrice, BookImageURL: req.query.q + imageURLAddOn};
   let sql = 'INSERT INTO Book SET ?';
   let query = db.query(sql, book, (err, result) => {
     if(err) throw err;

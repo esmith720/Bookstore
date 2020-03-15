@@ -8,7 +8,7 @@ class Book extends Component {
     render() {
         return (  
         <Card className="h-100">
-            <Card.Img/>
+            <Card.Img variant="top" src={this.props.bookImage}/>
             <Card.Body>
                 <div style={this.props.style}>
                     <div><strong>Title:</strong> {this.props.bookTitle}</div> 

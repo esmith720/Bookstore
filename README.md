@@ -2,6 +2,9 @@
 ## Overview
 Search for book titles, add and remove books from shopping cart, and view total dollar amount of shopping cart.
 ![View Cart GIF](ViewCart.gif)
+![Search Title GIF](ViewCart.gif)
+![Add To Cart GIF](ViewCart.gif)
+![Remove From Cart GIF](ViewCart.gif)
 * Landing Page
 ![Bookstore Landing Page JPG](BookstoreLandingPage.jpg)
 ## Built With

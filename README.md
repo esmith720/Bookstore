@@ -1,6 +1,7 @@
-## Bookstore Website
+# Bookstore Website
 ## Overview
-Search for book titles. Add and remove books from shopping cart. View dollar amount of cart total.
+Search for book titles, add and remove books from shopping cart, and view total dollar amount of shopping cart.
+![Bookstore Landing Page JPG](BookstoreLandingPage.gif)
 ## Built With
 * Express
 * MySQL

@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+/* My styles */
+.active-orange-2 input.form-control[type=text]:focus:not([readonly]) {
+  box-shadow: 0 1px 0 0 #ff4d00;
+  border-bottom: 2px #ff4d00;
+}
+
+.button:focus {
+  outline: 0;
+  box-shadow: none!important;
+}
+

@@ -6,11 +6,12 @@ import {Card, Container, Row, Col, Button} from 'react-bootstrap';
 
 class Book extends Component {
     render() {
+        let cardBodyStyle = {textAlign: 'center'}
         return (  
-        <Card className="h-100">
+        <Card className="h-100 border-0">
             <Card.Img variant="top" src={this.props.bookImage}/>
-            <Card.Body>
-                <div style={this.props.style}>
+            <Card.Body style={cardBodyStyle}>
+                <div>
                     <div><strong>Title:</strong> {this.props.bookTitle}</div> 
 
                     <div><strong> Authors: </strong>
